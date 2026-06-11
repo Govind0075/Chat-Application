@@ -53,7 +53,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
- ── Migrate on startup ────────────────────────────────────────────────────────
+// ── Migrate on startup ────────────────────────────────────────────────────────
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
