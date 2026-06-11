@@ -53,14 +53,14 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// ── Migrate on startup ────────────────────────────────────────────────────────
-//using (var scope = app.Services.CreateScope())
-//{
-//    var db  = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-//    var log = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-//    try   { await db.Database.MigrateAsync(); log.LogInformation("DB migrated."); }
-//    catch (Exception ex) { log.LogError(ex, "Migration failed."); throw; }
-//}
+ ── Migrate on startup ────────────────────────────────────────────────────────
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    var log = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    try { await db.Database.MigrateAsync(); log.LogInformation("DB migrated."); }
+    catch (Exception ex) { log.LogError(ex, "Migration failed."); throw; }
+}
 
 // ── Pipeline ──────────────────────────────────────────────────────────────────
 app.UseMiddleware<ExceptionMiddleware>();
