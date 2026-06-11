@@ -1,4 +1,5 @@
 using ChatApp.BLL.Interfaces;
+using ChatApp.DAL;
 using ChatApp.DAL.Interfaces;
 using ChatApp.Domain.Common;
 using ChatApp.Domain.DTOs;
