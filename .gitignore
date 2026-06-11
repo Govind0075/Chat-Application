@@ -1,0 +1,34 @@
+## Build output
+bin/
+obj/
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## NuGet
+*.nupkg
+*.snupkg
+packages/
+!**/packages/build/
+project.lock.json
+project.assets.json
+
+## Rider / JetBrains
+.idea/
+
+## VS Code
+.vscode/
+
+## Environment / secrets
+appsettings.Development.json
+appsettings.Local.json
+.env
+*.env
+
+## OS
+.DS_Store
+Thumbs.db
