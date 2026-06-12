@@ -83,7 +83,7 @@ jobs:
         run: dotnet test NexChat.sln --configuration Release --no-build
 
       - name : Publish Application
-        run: dotnet publish NexChat.sln --configuration Realease --output ./publsih
+        run: dotnet publish NexChat.sln --configuration Realease --output ./publish
 
       - name: Show Publish Output
         run: ls -R ./publish
