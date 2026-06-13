@@ -87,3 +87,31 @@ jobs:
 
       - name: Show Publish Output
         run: ls -R ./publish
+
+      - name: Uplaod Publish Output
+        uses: actions/upload-artifact@v4
+        with: 
+           name: publish-files
+           path: ./publish
+
+  deploy: 
+        
+       needs: build
+
+       runs-on: ubuntu-latest
+
+       steps:
+         - name: Download Artifact
+           uses: actions/download-artifact@v4
+           with:
+            name: publish-files
+
+         - name: Show Download Files
+           run: ls- R
+
+         
+
+
+
+
+
