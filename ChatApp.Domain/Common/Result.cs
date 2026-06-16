@@ -1,18 +1,23 @@
 namespace ChatApp.Domain.Common;
 
-public class Result
+/// <summary>
+/// Railway-oriented result wrapper — avoids throwing exceptions for expected
+/// failures (duplicate email, wrong password, expired token, etc.).
+/// Usage:
+///   return Result&lt;T&gt;.Success(value);
+///   return Result&lt;T&gt;.Failure("Email already in use.");
+/// </summary>
+public class Result<T>
 {
-    public bool    IsSuccess { get; }
-    public string? Error     { get; }
-    protected Result(bool ok, string? err) { IsSuccess = ok; Error = err; }
-    public static Result Ok()             => new(true,  null);
-    public static Result Fail(string err) => new(false, err);
-}
+    public bool    IsSuccess { get; private set; }
+    public T?      Value     { get; private set; }
+    public string? Error     { get; private set; }
 
-public class Result<T> : Result
-{
-    public T? Value { get; }
-    private Result(bool ok, T? value, string? err) : base(ok, err) { Value = value; }
-    public static Result<T> Ok(T value)    => new(true,  value, null);
-    public static new Result<T> Fail(string err) => new(false, default, err);
+    private Result() { }
+
+    public static Result<T> Success(T value) =>
+        new() { IsSuccess = true, Value = value };
+
+    public static Result<T> Failure(string error) =>
+        new() { IsSuccess = false, Error = error };
 }

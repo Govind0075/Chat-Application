@@ -1,11 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\ChatApp.Domain\ChatApp.Domain.csproj"/>
-    <ProjectReference Include="..\ChatApp.DAL\ChatApp.DAL.csproj"/>
+    <!-- Password hashing -->
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+
+    <!-- JWT token generation (JwtSecurityToken, SymmetricSecurityKey, etc.) -->
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.2" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens"  Version="7.5.2" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChatApp.Domain\ChatApp.Domain.csproj" />
+    <ProjectReference Include="..\ChatApp.DAL\ChatApp.DAL.csproj"       />
+  </ItemGroup>
+
 </Project>

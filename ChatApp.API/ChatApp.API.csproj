@@ -1,15 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\ChatApp.BLL\ChatApp.BLL.csproj"/>
-    <ProjectReference Include="..\ChatApp.DAL\ChatApp.DAL.csproj"/>
-    <ProjectReference Include="..\ChatApp.Domain\ChatApp.Domain.csproj"/>
-    <PackageReference Include="Microsoft.AspNetCore.SignalR"  Version="1.1.0"/>
-    <PackageReference Include="EFCore.NamingConventions"      Version="8.0.0"/>
-    <PackageReference Include="Swashbuckle.AspNetCore"        Version="6.5.0"/>
+    <!-- EF Core tools only (DAL project owns the actual EF packages) -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+
+    <!-- JWT Authentication -->
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
+
+    <!-- Swagger / OpenAPI -->
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChatApp.BLL\ChatApp.BLL.csproj"       />
+    <ProjectReference Include="..\ChatApp.DAL\ChatApp.DAL.csproj"       />
+    <ProjectReference Include="..\ChatApp.Domain\ChatApp.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

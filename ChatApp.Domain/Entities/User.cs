@@ -1,14 +1,20 @@
 namespace ChatApp.Domain.Entities;
 
-public class User : BaseEntity
+/// <summary>
+/// Core user entity.
+/// PasswordHash  - BCrypt hash, never store plain text.
+/// RefreshToken  - stored in DB for server-side invalidation (token rotation).
+/// </summary>
+public class User
 {
-    public string Username    { get; set; } = string.Empty;
-    public string DisplayName { get; set; } = string.Empty;
-    public string AvatarColor { get; set; } = "#6366f1";
-    public bool   IsOnline    { get; set; } = false;
-    public DateTime? LastSeenAt { get; set; }
+    public Guid     Id                  { get; set; } = Guid.NewGuid();
+    public string   Username            { get; set; } = string.Empty;
+    public string   Email               { get; set; } = string.Empty;
+    public string   PasswordHash        { get; set; } = string.Empty;
 
-    public ICollection<RoomMember>     RoomMemberships { get; set; } = new List<RoomMember>();
-    public ICollection<Message>        Messages        { get; set; } = new List<Message>();
-    public ICollection<UserConnection> Connections     { get; set; } = new List<UserConnection>();
+    // Refresh-token rotation — a new token replaces the old one on every use
+    public string?  RefreshToken        { get; set; }
+    public DateTime? RefreshTokenExpiry { get; set; }
+
+    public DateTime CreatedAt           { get; set; } = DateTime.UtcNow;
 }

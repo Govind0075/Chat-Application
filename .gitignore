@@ -29,6 +29,9 @@ appsettings.Local.json
 .env
 *.env
 
+## Publish output
+publish/
+
 ## OS
 .DS_Store
 Thumbs.db
